@@ -1,0 +1,21 @@
+digraph finite_state_machine {
+	rankdir=LR;
+	size="8,5";
+
+	node [label="IN", shape=circle]; S;
+	node [label="OUT", shape=circle]; q1;
+	node [shape=doublecircle, label="{f}"]; f;
+
+	node [shape=point]; qi;
+	qi -> S;
+
+	S -> f [label="EOF"];
+
+	S -> S [label="char"];
+	S -> q1 [label="' '|\\t|\\n"];
+
+	q1 -> S [label="char"];
+	q1 -> q1 [label="' '|\\t|\\n"];
+	q1 -> f [label="EOF"];
+
+}
